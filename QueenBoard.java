@@ -11,14 +11,23 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r, int c){
-    board[r][c] = -1;
+
     ///can be made using only one loop
     //look at note book light pencil to finish this
     for(int i = 0; i < board.length; i++){
       if(r - i < board.length && c + i < board.length){
         board[r - i][c + i] += 1;
       }
+      if(r < board.length && c + 1 < board.length){
+        board[r][c + 1] += 1;
+      }
+      if(r + i < board.length && c + i < board.length){
+        board[r + i][c + i] += 1;
+      }
     }
+    board[r][c] = -1;
+    return true;
+    // make it so that it can also return false when there is already a number
   }
 
 
