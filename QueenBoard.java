@@ -11,7 +11,8 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r, int c){
-    if(board[r][c] != 0){
+    if(board[r][c] != 0 || r < 0 || r >= board.length
+    || c < 0 || c >= board.length){
       return false;
     }
     ///can be made using only one loop
@@ -35,10 +36,28 @@ public class QueenBoard{
     // make it so that it can also return false when there is already a number
   }
 
-
-
-
-  //private boolean removeQueen(int r, int c);
+  private boolean removeQueen(int r, int c){
+    if(board[r][c] != -1 || r < 0 || r >= board.length
+    || c < 0 || c >= board.length){
+      return false;
+    }
+    else{
+      for(int i = 0; i < board.length; i++){
+        if(r - i < board.length && r - i >= 0
+        && c + i < board.length){
+          board[r - i][c + i] -= 1;
+        }
+        if(r < board.length && c + i < board.length){
+          board[r][c + i] -= 1;
+        }
+        if(r + i < board.length && c + i < board.length){
+          board[r + i][c + i] -= 1;
+        }
+      }
+      board[r][c] = 0;
+      return true;
+    }
+  }
 
   public String toString(){
     String str = "";
@@ -60,9 +79,13 @@ public class QueenBoard{
   }
 
   public static void main(String[] args){
-    QueenBoard q = new QueenBoard(4);
+    QueenBoard q = new QueenBoard(7);
     System.out.println(q);
     q.addQueen(3,0);
+    System.out.println(q);
+    q.addQueen(3,1);
+    System.out.println(q);
+    q.removeQueen(3,0);
     System.out.println(q);
   }
 
