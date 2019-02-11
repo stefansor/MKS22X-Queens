@@ -63,10 +63,10 @@ public class QueenBoard{
     String str = "";
     for(int i = 0; i < board.length; i++){
       for(int j= 0; j < board.length; j++){
-        if(board[i][j] > 0){
+        /*if(board[i][j] > 0){//debugging purposes
           str = str + "*";
-        }
-        if(board[i][j] == 0){
+        }*/
+        if(board[i][j] >= 0){
           str = str + "_";
         }
         if(board[i][j] == -1){
@@ -77,6 +77,49 @@ public class QueenBoard{
     }
     return str;
   }
+
+  private void clear(){
+    for(int i = 0; i < board.length; i++){
+      for(int j = 0; j < board.length; j++){
+        board[i][j] = 0;
+      }
+    }
+  }
+
+
+  public boolean solve(){
+    return sh(0, 0, 0, this.addQueen(0,0));
+  }
+
+  public boolean sh(int row, int col, int queens, boolean added){
+    if(queens == board.length){
+      return true;
+    }
+    if((queens != board.length && col == board.length) || added == false){
+      return false;
+    } 
+    else {
+      for(int i = 0; i < board.length; i++){
+        return
+      }
+
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   public static void main(String[] args){
     QueenBoard q = new QueenBoard(7);
