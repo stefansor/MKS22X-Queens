@@ -88,22 +88,22 @@ public class QueenBoard{
 
 
   public boolean solve(){
-    return sh(0, 0, 0, this.addQueen(0,0));
+    return help(0);
   }
 
-  public boolean sh(int row, int col, int queens, boolean added){
-    if(queens == board.length){
+  public boolean help(int col){
+    if(col >= board.length){
       return true;
     }
-    if((queens != board.length && col == board.length) || added == false){
-      return false;
-    } 
-    else {
-      for(int i = 0; i < board.length; i++){
-        return
+    for(int i = 0; i < board.length; i++){
+      if(this.addQueen(i, col)){
+        if(help(col + 1)){
+          return true;
+        }
+        this.removeQueen(i, col);
       }
-
     }
+    return false;
   }
 
 
@@ -130,6 +130,8 @@ public class QueenBoard{
     System.out.println(q);
     q.removeQueen(3,0);
     System.out.println(q);
+    QueenBoard one = new QueenBoard(7);
+    System.out.println(one.solve());
   }
 
 
