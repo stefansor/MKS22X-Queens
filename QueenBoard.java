@@ -103,7 +103,26 @@ public class QueenBoard{
         this.removeQueen(i, col);
       }
     }
+    this.clear();
     return false;
+  }
+
+  public int countSolutions(){
+    return help2(0);
+  }
+
+  public int help2(int col){
+    if(col >= board.length){
+      return 1;
+    }
+    int sum = 0;
+    for(int i = 0; i < board.length; i++){
+      if(this.addQueen(i, col)){
+        sum += help2(col + 1);
+        this.removeQueen(i, col);
+      }
+    }
+    return sum;
   }
 
 
@@ -119,9 +138,10 @@ public class QueenBoard{
 
 
 
-
-
   public static void main(String[] args){
+
+    //testing the add and remove functions not too rigorous but minimum
+    // I would say
     QueenBoard q = new QueenBoard(7);
     System.out.println(q);
     q.addQueen(3,0);
@@ -130,8 +150,26 @@ public class QueenBoard{
     System.out.println(q);
     q.removeQueen(3,0);
     System.out.println(q);
-    QueenBoard one = new QueenBoard(7);
+
+    QueenBoard zero = new QueenBoard(0);
+    QueenBoard one = new QueenBoard(1);
+    QueenBoard two = new QueenBoard(2);
+    QueenBoard three = new QueenBoard(3);
+    QueenBoard four = new QueenBoard(4);
+    QueenBoard five = new QueenBoard(5);
+    QueenBoard six = new QueenBoard(6);
+    QueenBoard seven = new QueenBoard(7);
+    QueenBoard eight = new QueenBoard(8);
+    QueenBoard nine = new QueenBoard(9);
+
+
+    //testing solve
     System.out.println(one.solve());
+    one.clear();
+
+    //tested countSoltuoi
+    System.out.println(one.countSolutions());
+    System.out.println(two.countSolutions());
   }
 
 
